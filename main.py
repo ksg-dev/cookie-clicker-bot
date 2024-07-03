@@ -25,16 +25,27 @@ def check_upgrades():
     for item in store_items[7::-1]:
         status = item.get_attribute("class")
         item_title = item.find_element(By.CSS_SELECTOR, value="b").text
-        name = item_title.split(" - ")
-        print(name)
+        name, price = item_title.split(" - ")
         # print(name)
         # print(price)
-        # if status != "grayed":
+        if status != "grayed":
+            money = driver.find_element(By.ID, value="money").text
+            if int(money) >= int(price):
+                item.click()
 
 
-check_upgrades()
+def main():
+    click = 0
+    while click < 1000:
+        cookie.click()
+        if click >= 500:
+            check_upgrades()
+        click += 1
+
+
+main()
 # print(buy_cursor.get_attribute("class"))
 
 
-driver.quit()
+# driver.quit()
 # cookie.click()
