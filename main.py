@@ -1,8 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
-# Use this class to use specific keys besides letters/numb
-from selenium.webdriver.common.keys import Keys
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
@@ -30,11 +28,12 @@ timeout = time.time() + 300
 
 def main():
     while time.time() < timeout:
-        first_loop = time.time() + 5
+        first_loop = time.time() + 10
         while time.time() < first_loop:
             cookie.click()
         check_upgrades()
     cookies = driver.find_element(By.ID, value="cps").text
+    driver.quit()
     print(cookies)
 
 
